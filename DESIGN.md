@@ -1,4 +1,4 @@
-# DESIGN.md — Aoslon Windows & Doors
+# DESIGN.md — topaluminumwindow
 
 ## 方向
 
@@ -15,10 +15,22 @@
 
 ## 设计 Token（来源：src/styles/tokens.css，单一真源）
 
-- 色彩：深蓝灰主导（工业信任感）+ 铝银中性色 + 单一强调色（驱动 CTA）。
-  - `--color-bg`、`--color-surface`、`--color-fg`、`--color-muted`、`--color-primary`、`--color-accent`、`--color-border`
+配色参考 wanjiawindows.com（2026-10-05 用户指定）：**黑 + 白 + 暖黄**，白色页头 + 黑色页脚/深色区块结构。
+
+- 色彩：
+  - `--color-brand` #000000：深色区块（hero、页脚、CTA band）背景
+  - `--color-brand-deep` #1a1a1a：深色区块 hover 态
+  - `--color-gold` #ffcd57：品牌强调/CTA（参考站主色 #FFCD57）
+  - `--color-gold-strong` #ffdc14：CTA hover（参考站亮黄）
+  - `--color-canvas` #f2f5f7：浅灰区块背景
+  - `--color-surface` #ffffff：页面/卡片背景
+  - `--color-heading` #1e293b：标题深板岩色（参考站标题色）
+  - `--color-ink` #000000：正文；`--color-ink-muted` #6b6b6b：次要文字
+  - `--color-line` #e7e7e7：边框/分隔
 - 字体：系统无衬线栈，不引第三方字体（性能优先，首版不加外部请求）。
 - 间距/圆角/阴影/容器宽度：全部走 token，页面组件不得散落任意值。
+
+注意：CTA 按钮为黄底黑字（gold 背景 + brand-deep/ink 文字），与参考站对比逻辑一致。
 
 ## 图片规则
 

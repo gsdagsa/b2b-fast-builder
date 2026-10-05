@@ -1,6 +1,6 @@
 export const site = {
-  name: "Aoslon Windows & Doors",
-  legalName: "Aoslon Windows & Doors",
+  name: "topaluminumwindow",
+  legalName: "topaluminumwindow",
   origin: "https://topaluminumwindows.com",
   founded: 2017,
   factoryLocation: "Foshan, Guangdong, China",

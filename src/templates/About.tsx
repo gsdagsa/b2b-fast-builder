@@ -8,8 +8,8 @@ export function AboutPage(props: { assets: { css: string | null; js: string | nu
   return (
     <Layout
       route="/about/"
-      title={`About Aoslon — Aluminum Windows & Doors Factory in Foshan`}
-      metaDescription="Aoslon Windows & Doors is a Foshan-based aluminum window and door factory founded in 2017, supplying importers, contractors and OEM brands across nine export countries."
+      title={`About topaluminumwindow — Aluminum Windows & Doors Factory in Foshan`}
+      metaDescription="topaluminumwindow is a Foshan-based aluminum window and door factory founded in 2017, supplying importers, contractors and OEM brands across nine export countries."
       assets={props.assets}
       jsonLd={{
         "@context": "https://schema.org",
@@ -46,7 +46,7 @@ export function AboutPage(props: { assets: { css: string | null; js: string | nu
           <ul className="mt-4 space-y-3 text-ink-muted">
             {categories.map((category) => (
               <li key={category.slug} className="border-b border-line pb-3">
-                <a href={category.route} className="font-semibold text-brand no-underline hover:text-gold-strong">
+                <a href={category.route} className="font-semibold text-brand no-underline hover:text-gold-deep">
                   {category.name}
                 </a>
                 <p className="text-sm">{category.products.length} system families, custom sized per project.</p>

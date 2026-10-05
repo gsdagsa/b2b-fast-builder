@@ -32,7 +32,7 @@ export function ContactPage(props: { assets: { css: string | null; js: string | 
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-ink">
-                  Name <span aria-hidden="true" className="text-gold-strong">*</span>
+                  Name <span aria-hidden="true" className="text-gold-deep">*</span>
                 </label>
                 <input
                   type="text"
@@ -46,7 +46,7 @@ export function ContactPage(props: { assets: { css: string | null; js: string | 
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-ink">
-                  Email <span aria-hidden="true" className="text-gold-strong">*</span>
+                  Email <span aria-hidden="true" className="text-gold-deep">*</span>
                 </label>
                 <input
                   type="email"
@@ -60,7 +60,7 @@ export function ContactPage(props: { assets: { css: string | null; js: string | 
               </div>
               <div>
                 <label htmlFor="country" className="block text-sm font-semibold text-ink">
-                  Country <span aria-hidden="true" className="text-gold-strong">*</span>
+                  Country <span aria-hidden="true" className="text-gold-deep">*</span>
                 </label>
                 <input
                   type="text"
@@ -93,7 +93,7 @@ export function ContactPage(props: { assets: { css: string | null; js: string | 
             </div>
             <div className="mt-4">
               <label htmlFor="message" className="block text-sm font-semibold text-ink">
-                Project details <span aria-hidden="true" className="text-gold-strong">*</span>
+                Project details <span aria-hidden="true" className="text-gold-deep">*</span>
               </label>
               <textarea
                 id="message"

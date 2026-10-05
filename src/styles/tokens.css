@@ -2,27 +2,30 @@
 
 /*
  * Design tokens — single source of truth for visual values (see DESIGN.md).
+ * Palette follows the wanjiawindows.com reference: black + white + warm yellow.
  * Tailwind v4 @theme generates semantic utilities: bg-canvas, text-ink,
  * bg-brand, text-gold, border-line, max-w-page, rounded-card, shadow-card.
  */
 @theme {
-  --color-canvas: #f5f7f9;
+  --color-canvas: #f2f5f7;
   --color-surface: #ffffff;
-  --color-ink: #16232e;
-  --color-ink-muted: #56677a;
-  --color-brand: #10304f;
-  --color-brand-deep: #0a2137;
-  --color-gold: #c9a24b;
-  --color-gold-strong: #ab8433;
-  --color-line: #d9dfe6;
+  --color-ink: #000000;
+  --color-ink-muted: #6b6b6b;
+  --color-brand: #000000;
+  --color-brand-deep: #1a1a1a;
+  --color-gold: #ffcd57;
+  --color-gold-strong: #ffdc14;
+  --color-gold-deep: #d97706;
+  --color-heading: #1e293b;
+  --color-line: #e7e7e7;
 
   --font-sans: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
 
   --radius-card: 10px;
   --radius-control: 6px;
 
-  --shadow-card: 0 1px 3px rgb(16 48 79 / 0.08), 0 4px 14px rgb(16 48 79 / 0.06);
-  --shadow-panel: 0 2px 6px rgb(16 48 79 / 0.1), 0 10px 30px rgb(16 48 79 / 0.1);
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 0.06), 0 4px 14px rgb(0 0 0 / 0.05);
+  --shadow-panel: 0 2px 6px rgb(0 0 0 / 0.08), 0 10px 30px rgb(0 0 0 / 0.08);
 
   --container-page: 72rem;
 }

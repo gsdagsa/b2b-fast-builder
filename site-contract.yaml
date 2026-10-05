@@ -1,7 +1,7 @@
 schemaVersion: 2
 
 business:
-  company: "Aoslon Windows & Doors"
+  company: "topaluminumwindow"
   offer: "铝合金门窗系统制造与出口：铝窗、铝门、幕墙/商业系统、阳光房与延伸品"
   buyers:
     - "importers-distributors"
@@ -23,7 +23,7 @@ business:
 
 evidence:
   verified:
-    - "company: Aoslon Windows & Doors（客户口述，2026-10-05）"
+    - "company: topaluminumwindow（客户口述，2026-10-05）"
     - "factory_location: Foshan, Guangdong, China（客户口述，2026-10-05）"
     - "founded: 2017（客户口述，2026-10-05）"
     - "export_countries: US, AU, CA, SA, UK, FR, AE, IL, IE（客户口述，2026-10-05）"

@@ -40,14 +40,14 @@ export function buildRouteManifest(): RouteEntry[] {
       route: "/",
       title: `Aluminum Windows & Doors Manufacturer | ${site.name}`,
       metaDescription:
-        "Aoslon Windows & Doors is an aluminum window, door, curtain wall and sunroom manufacturer in Foshan, China, exporting to North America, Australia and the Middle East.",
+        "topaluminumwindow is an aluminum window, door, curtain wall and sunroom manufacturer in Foshan, China, exporting to North America, Australia and the Middle East.",
       noindex: false,
     },
     {
       route: "/about/",
-      title: `About Aoslon — Aluminum Windows & Doors Factory in Foshan`,
+      title: `About topaluminumwindow — Aluminum Windows & Doors Factory in Foshan`,
       metaDescription:
-        "Aoslon Windows & Doors is a Foshan-based aluminum window and door factory founded in 2017, supplying importers, contractors and OEM brands across nine export countries.",
+        "topaluminumwindow is a Foshan-based aluminum window and door factory founded in 2017, supplying importers, contractors and OEM brands across nine export countries.",
       noindex: false,
     },
   ];

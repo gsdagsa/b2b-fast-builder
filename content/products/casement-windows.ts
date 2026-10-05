@@ -8,7 +8,7 @@ export const casementWindows: ProductDetail = {
   metaDescription:
     "Aluminum casement windows custom made for export projects: multi-point locking, double glazing and thermal break options, powder coated or wood-grain finishes.",
   intro:
-    "Casement windows open outward on side hinges and seal by compression, which makes them one of the weathertight window types you can specify. They suit bedrooms, living rooms and any opening where ventilation, security and clean operation matter. Aoslon builds casement windows to project measurements for importers, contractors and OEM brands, with glazing, hardware and finishes specified per market.",
+    "Casement windows open outward on side hinges and seal by compression, which makes them one of the weathertight window types you can specify. They suit bedrooms, living rooms and any opening where ventilation, security and clean operation matter. topaluminumwindow builds casement windows to project measurements for importers, contractors and OEM brands, with glazing, hardware and finishes specified per market.",
   specGroups: [
     {
       heading: "Frame & Profile",

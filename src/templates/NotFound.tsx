@@ -46,7 +46,7 @@ export function NotFoundPage(props: { assets: { css: string | null; js: string |
   return (
     <Layout
       route="/404.html"
-      title="Page Not Found | Aoslon Windows & Doors"
+      title="Page Not Found | topaluminumwindow"
       metaDescription="This page does not exist. Browse our aluminum window, door and façade systems or return to the home page."
       noindex
       assets={props.assets}

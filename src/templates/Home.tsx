@@ -9,7 +9,7 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
     <Layout
       route="/"
       title={`Aluminum Windows & Doors Manufacturer | ${site.name}`}
-      metaDescription="Aoslon Windows & Doors is an aluminum window, door, curtain wall and sunroom manufacturer in Foshan, China, exporting to North America, Australia and the Middle East."
+      metaDescription="topaluminumwindow is an aluminum window, door, curtain wall and sunroom manufacturer in Foshan, China, exporting to North America, Australia and the Middle East."
       assets={props.assets}
       jsonLd={{
         "@context": "https://schema.org",
@@ -34,7 +34,7 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
             Aluminum windows, doors and façade systems — factory-direct for your market
           </h1>
           <p className="mt-4 max-w-2xl text-base text-surface/85 md:text-lg">
-            Aoslon builds custom aluminum windows, doors, curtain walls and sunrooms for
+            topaluminumwindow builds custom aluminum windows, doors, curtain walls and sunrooms for
             importers, contractors and OEM brands — made to project measurements and
             exported to {site.exportCountries.length} countries across North America, Australia and the Middle East.
           </p>
@@ -78,7 +78,7 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
                   +{Math.max(category.products.length - 3, 0)} more in this system
                 </li>
               </ul>
-              <span className="mt-4 inline-block text-sm font-semibold text-gold-strong">
+              <span className="mt-4 inline-block text-sm font-semibold text-ink underline decoration-gold decoration-2 underline-offset-4">
                 View {category.name.toLowerCase()} →
               </span>
             </a>
@@ -92,7 +92,7 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
             <SectionHeading>Built for export projects</SectionHeading>
             <ul className="mt-6 space-y-4">
               <li className="flex gap-3">
-                <span className="font-bold text-gold-strong">01</span>
+                <span className="font-bold text-ink">01</span>
                 <p className="text-ink-muted">
                   <strong className="text-ink">Made to project measurements.</strong> Custom
                   sizes, opening directions, dual-color finishes and market-specific
@@ -100,7 +100,7 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
                 </p>
               </li>
               <li className="flex gap-3">
-                <span className="font-bold text-gold-strong">02</span>
+                <span className="font-bold text-ink">02</span>
                 <p className="text-ink-muted">
                   <strong className="text-ink">Factory in Foshan since {site.founded}.</strong>{" "}
                   Aluminum window and door production under one roof, close to the
@@ -108,14 +108,14 @@ export function Home(props: { assets: { css: string | null; js: string | null } 
                 </p>
               </li>
               <li className="flex gap-3">
-                <span className="font-bold text-gold-strong">03</span>
+                <span className="font-bold text-ink">03</span>
                 <p className="text-ink-muted">
                   <strong className="text-ink">OEM for brand owners.</strong> Hardware brands,
                   labeling and packaging arranged to your brand requirements.
                 </p>
               </li>
               <li className="flex gap-3">
-                <span className="font-bold text-gold-strong">04</span>
+                <span className="font-bold text-ink">04</span>
                 <p className="text-ink-muted">
                   <strong className="text-ink">Export packing as standard.</strong> Foam,
                   corner guards and export cartons or crates, adapted to your

@@ -1,0 +1,138 @@
+schemaVersion: 2
+
+business:
+  company: "Aoslon Windows & Doors"
+  offer: "铝合金门窗系统制造与出口：铝窗、铝门、幕墙/商业系统、阳光房与延伸品"
+  buyers:
+    - "importers-distributors"
+    - "contractors-developers"
+    - "oem-brands"
+    - "end-owners"
+  markets:
+    - "North America"
+    - "Australia / New Zealand"
+    - "Middle East"
+  languages: ["en"]
+  primaryConversion: "request_quote"
+  qualifiedInquiryFields:
+    - "name"
+    - "email"
+    - "country"
+    - "message"
+    - "optional: project_type, quantity, product_interest"
+
+evidence:
+  verified:
+    - "company: Aoslon Windows & Doors（客户口述，2026-10-05）"
+    - "factory_location: Foshan, Guangdong, China（客户口述，2026-10-05）"
+    - "founded: 2017（客户口述，2026-10-05）"
+    - "export_countries: US, AU, CA, SA, UK, FR, AE, IL, IE（客户口述，2026-10-05）"
+  pending:
+    - "认证具体清单（产品/体系认证型号与发证机构）"
+    - "工厂实力可量化数据（产能、车间、设备）"
+    - "出口案例（国家/项目类型/图片）"
+  forbiddenPlaceholders:
+    - "fake_customer_logo"
+    - "unverified_certificate"
+    - "invented_capacity"
+
+architecture:
+  stack: "vite-react-typescript"
+  rendering: "static-prerender"
+  generator: "react-build-time"
+  browserRuntime: "progressive-enhancement"
+  contentSource: "repository"
+  samplePages:
+    - "/"
+    - "/windows/"
+    - "/windows/casement-windows/"
+  routesManifest: "./routes.json"
+  outputDirectory: "./dist"
+
+designSystem:
+  briefFile: "./DESIGN.md"
+  directionStatus: "proposed"
+  defaultDirection: "professional-premium-b2b-corporate"
+  styling: "tailwind-v4"
+  vitePlugin: "@tailwindcss/vite"
+  semanticTokensRequired: true
+  componentSource: "project-owned"
+  shadcnMode: "none"
+  avoidUnusedClientJavascript: true
+  sampleUsesProductionRenderer: true
+  sampleApprovalSource: null
+  visualReviewFile: "./qa/visual-review.md"
+
+contentHandoff:
+  trigger: "after-style-approval"
+  proactive: true
+  fullAssetPackRequiredToStart: false
+  productionRequiresVerifiedContent: true
+
+media:
+  mode: "local"
+  logicalAssetIds: true
+  verifiedBusinessImagesRequired: true
+  preview:
+    allowed: true
+    useAvailableImageGeneration: false
+    labelRequired: true
+    noindexRequired: true
+    replaceProductIllustrationsBeforeProduction: true
+  localDirectory: "./public/assets"
+
+domain:
+  registrar: "待确认"
+  registrantControlledByCustomer: true
+  dnsProvider: "registrar"
+  productionDomain: "topaluminumwindows.com"
+
+inquiries:
+  endpoint: "/api/inquiry"
+  successRedirect: "/thank-you/"
+  database: "sqlite"
+  notification: "resend"
+  turnstile: true
+  saveBeforeNotify: true
+  redirectOnlyAfterStore: true
+  recipient: "待确认"
+  conversion:
+    event: "inquiry_submit_success"
+    idSource: "inquiry_id"
+    preventDuplicate: true
+    allowPii: false
+
+liveChat:
+  provider: "none"
+  enabled: false
+
+emailDelivery:
+  provider: "resend"
+  sendingDomain: "待确认"
+  secretName: "RESEND_API_KEY"
+  secretDestination: "vps-env-file"
+
+deployment:
+  provider: "hostinger-vps"
+  serverUser: "待确认"
+  productionDomain: "topaluminumwindows.com"
+  buildCommand: "npm run quality"
+  outputDirectory: "./dist"
+  apiService: "systemd"
+  webServer: "nginx"
+  blockOnQualityFailure: true
+  authorized: false
+
+acceptance:
+  routeManifestRequired: true
+  htmlContainsPrimaryContent: true
+  javascriptOptionalForReading: true
+  real404: true
+  inquiryStoredOnEmailFailure: true
+  thankYouNoindex: true
+  conversionOnlyAfterInquiryStored: true
+  viewports: [360, 390, 768, 1440]
+  pageSpeedClaimRequiresEvidence: true
+  uniqueIndexableTitles: true
+  selfCanonicalMatchesRoute: true
+  sitemapMatchesIndexableCanonicals: true

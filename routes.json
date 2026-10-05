@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "/",
+    "/about/",
+    "/windows/",
+    "/windows/casement-windows/",
+    "/doors/",
+    "/commercial/",
+    "/sunrooms/",
+    "/contact/",
+    "/thank-you/"
+  ]
+}

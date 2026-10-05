@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — single source of truth for visual values (see DESIGN.md).
+ * Tailwind v4 @theme generates semantic utilities: bg-canvas, text-ink,
+ * bg-brand, text-gold, border-line, max-w-page, rounded-card, shadow-card.
+ */
+@theme {
+  --color-canvas: #f5f7f9;
+  --color-surface: #ffffff;
+  --color-ink: #16232e;
+  --color-ink-muted: #56677a;
+  --color-brand: #10304f;
+  --color-brand-deep: #0a2137;
+  --color-gold: #c9a24b;
+  --color-gold-strong: #ab8433;
+  --color-line: #d9dfe6;
+
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  --radius-card: 10px;
+  --radius-control: 6px;
+
+  --shadow-card: 0 1px 3px rgb(16 48 79 / 0.08), 0 4px 14px rgb(16 48 79 / 0.06);
+  --shadow-panel: 0 2px 6px rgb(16 48 79 / 0.1), 0 10px 30px rgb(16 48 79 / 0.1);
+
+  --container-page: 72rem;
+}

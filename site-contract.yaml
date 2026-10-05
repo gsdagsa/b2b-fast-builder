@@ -51,7 +51,7 @@ architecture:
 
 designSystem:
   briefFile: "./DESIGN.md"
-  directionStatus: "proposed"
+  directionStatus: "approved"
   defaultDirection: "professional-premium-b2b-corporate"
   styling: "tailwind-v4"
   vitePlugin: "@tailwindcss/vite"

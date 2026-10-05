@@ -40,7 +40,8 @@
 
 ## 已确认选择
 
-- 2026-10-05：方向按默认 `professional-premium-b2b-corporate` 提案，等用户对样板确认后更新本节与 `directionStatus`。
+- 2026-10-05：**样式已获用户确认**（黑 + 白 + 暖黄配色、版式结构），`directionStatus: approved`。样式确认不等于内容确认，进入真实素材收集与替换。
+- 2026-10-05：品牌名定为 topaluminumwindow；配色按 wanjiawindows.com 参考（黑 + 白 + #FFCD57 暖黄）。
 - 表单：简单字段为主 + 可选项目字段，不强制注册。
 - 语言：英语单语首版；hreflang 待多语言计划确认后再加。
 

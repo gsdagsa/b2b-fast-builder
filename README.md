@@ -36,25 +36,24 @@
 |---|---|---|
 | 页面建设 | 复用 React 组件、内容结构与建站流程 | 同类页面不必每次从头开发 |
 | 内容更新 | Agent 修改资料并重新发布 | 不必逐站搭建和维护 CMS |
-| 网页访问 | 提前生成静态 HTML，交给 Cloudflare Pages | 普通产品浏览不必每次运行服务端页面渲染 |
-| 询盘接收 | D1 保存记录，Resend 发邮件 | 可以从现有免费额度起步 |
-| 产品图片 | 默认随站发布，需要共享时再用 R2 | 普通项目不用先配置独立图片服务 |
+| 网页访问 | 提前生成静态 HTML，Nginx 在 VPS 上直接托管 | 普通产品浏览不必每次运行服务端页面渲染 |
+| 询盘接收 | SQLite 保存记录，Resend 发邮件 | 一台 VPS 可承载多个站，数据库无需额外服务 |
+| 产品图片 | 默认随站发布，多站共享时再用共享媒体目录 | 普通项目不用先配置独立图片服务 |
 
-Cloudflare Pages 对不触发 Functions 的静态资源请求免费；询盘接口另计额度。D1 和 Resend 也提供免费方案。[Pages 计费](https://developers.cloudflare.com/pages/functions/pricing/)、[D1 计费](https://developers.cloudflare.com/d1/platform/pricing/)、[Resend 计费](https://resend.com/pricing)
+VPS 按固定月费计价，不按请求量计费；Resend 提供免费方案。一台小型 VPS 可以承载多个静态站和询盘接口，扩展网站数量的边际成本主要是域名。[Hostinger VPS 方案](https://www.hostinger.com/vps-hosting)、[Resend 计费](https://resend.com/pricing)
 
-**在免费额度覆盖的范围内，核心托管、询盘存档和邮件通知可以不产生服务费。** 域名、AI 工具、内容审核和超额用量仍需预算，所以这是一套低成本方案，不是无限网站永久零成本。
+**在 VPS 与免费邮件额度覆盖的范围内，托管、询盘存档和邮件通知可以控制在固定低成本。** 域名、AI 工具、内容审核和超额用量仍需预算，所以这是一套低成本方案，不是无限网站永久零成本。
 
 <details>
-<summary>扩展网站数量前，检查哪些额度？</summary>
+<summary>扩展网站数量前，检查哪些限制？</summary>
 
-截至 2026-09-05：
+截至 2026-10-05：
 
-- Pages 每账号有 100 个项目的限制，免费方案提供每月 500 次构建；文件数量、大小也有限制，不等于无限站点。[Pages 限制](https://developers.cloudflare.com/pages/platform/limits/)
-- Pages Functions 与 Workers Free 共用每日 100,000 次请求额度，不是每个站各送一份。[Functions 计费](https://developers.cloudflare.com/pages/functions/pricing/)
-- D1 免费方案每账号最多 10 个数据库，每库最大 500 MB、总计 5 GB，并有读写限制。如果每站独立建库，要把数据库数量一起纳入预算；达到限制可能导致写入失败。[D1 限制](https://developers.cloudflare.com/d1/platform/limits/)、[D1 计费](https://developers.cloudflare.com/d1/platform/pricing/)
+- VPS 的 CPU、内存、磁盘和带宽是固定上限。静态站占用很小，但每个站共享同一台服务器资源；流量显著增长时需要升级方案或拆分服务器。
 - Resend 免费方案为每月 3,000 封、每日 100 封邮件，支持 3 个发信域名。网站域名和邮件发信域名是两回事；若各站都要独立发信身份，需另外评估套餐。[Resend 计费](https://resend.com/pricing)
+- 单台 VPS 需要自行负责系统更新、备份和安全加固；没有托管平台的自动运维。多站集中时，一台服务器故障会同时影响全部站点。
 
-按账号、项目和所选服务核算，不能把免费额度简单乘以网站数量。规模超过本方案限制时，需要另行评估托管架构和付费方案。
+按服务器规格、站点数量和邮件用量核算，不能把单站成本简单乘以网站数量。规模超过单台 VPS 合理负载时，需要另行评估托管架构和付费方案。
 
 </details>
 
@@ -106,22 +105,22 @@ Skill 指导 Agent 根据关键词、修饰词和采购意图安排导航、分�
 客户提交表单后，执行这条流程：
 
 ```text
-校验表单 → D1 保存询盘 → Resend 邮件通知 → 感谢页与转化追踪
+校验表单 → 数据库保存询盘 → Resend 邮件通知 → 感谢页与转化追踪
 ```
 
 记录保存成功后才进入感谢页；邮件暂时失败，已经入库的询盘仍可查询和按项目实现补发。数据库写入失败则保留表单并提示，不能假装提交成功。
 
-这不是自带询盘后台的 CRM：记录通过 D1 控制台或项目查询工具查看。可选 Tidio 即时聊天，其对话留在 Tidio，不替代站内表单存档。
+这不是自带询盘后台的 CRM：记录通过数据库查询命令或项目查询工具查看。可选 Tidio 即时聊天，其对话留在 Tidio，不替代站内表单存档。
 
 ## 六、实际使用：先做好样板，再复用到更多站
 
 1. **你和 AI 确认方向**：提供产品、买家、目标市场和现有资料，规划首个站的页面。
 2. **先做三个样板页**：首页、分类页、详情页，确认专业 B2B 企业风格，再扩展全站。
 3. **换成真实内容**：Agent 主动引导你上传公司介绍、参数表和产品照片，核对后替换预览素材。
-4. **接通并测试**：到需要时才引导配置 Cloudflare、邮件和所选聊天，部署后测试真实询盘。
+4. **接通并测试**：到需要时才引导配置 VPS、邮件和所选聊天，部署后测试真实询盘。
 5. **复用与持续更新**：保留已验证的组件和流程，为下一个品类或国家调整内容、域名与收件配置，逐站检查发布。
 
-每个站保留自己的内容、配置和回退方法。同一品牌的素材可按需共用 R2；不同客户的素材和询盘必须隔离。
+每个站保留自己的内容、配置和回退方法。同一品牌的素材可按需共用共享媒体目录；不同客户的素材和询盘必须隔离。
 
 本仓库提供的是可重复执行的建站规范、模板与验证脚本，**不是已经内置批量发站、统一调度和跨站经营看板的 SaaS 平台**。实际功能由 Agent 在项目中构建和验证。
 
@@ -169,11 +168,11 @@ Skill 指导 Agent 根据关键词、修饰词和采购意图安排导航、分�
 
 - 页面：Vite + React + TypeScript，构建时为每个重要网址生成完整 HTML，默认不用 Next.js。
 - 样式：Tailwind CSS v4、统一语义 Token，按需使用 shadcn；以真实产品和采购信息为设计中心。
-- 托管与询盘：Cloudflare Pages + Pages Functions + Turnstile + D1 + Resend。
-- 可选增强：R2 共享媒体、Tidio 即时聊天。
+- 托管与询盘：Hostinger VPS + Nginx + Node.js API 服务 + Turnstile + SQLite + Resend。
+- 可选增强：共享媒体目录、Tidio 即时聊天。
 - 更新：修改内容源文件，检查、重建并部署；静态前端可迁移，数据库与邮件集成迁移需要适配。
 
-当前 Skill 使用 Pages；Cloudflare 已提供面向更大规模的其他托管路线，本仓库没有因此自动切换架构。超出项目限制时须另行选型。
+当前 Skill 使用 VPS 自管架构；服务器运维（系统更新、备份、安全加固）由项目流程和 Agent 负责，超出单台 VPS 合理负载时须另行选型。
 
 实施入口与参考：
 
@@ -181,7 +180,7 @@ Skill 指导 Agent 根据关键词、修饰词和采购意图安排导航、分�
 - [页面规划](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/b2b-planning-and-conversion.md)
 - [静态 HTML 与多语言](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/static-seo-contract.md)
 - [主动上线引导](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/guided-launch.md)
-- [部署、询盘与图片](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/cloudflare-runtime-and-deployment.md)
+- [部署、询盘与图片](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/hostinger-vps-runtime-and-deployment.md)
 - [自动化检查](https://github.com/jackzhang1314/b2b-fast-builder/blob/main/skills/b2b-fast-builder/references/automated-quality-gate.md)
 
 </details>

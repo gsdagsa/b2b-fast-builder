@@ -1,6 +1,6 @@
 # 自动化质量闸门
 
-用于新建项目、修改页面、更新内容和 Cloudflare Pages 部署。目标是让“每个网址都是完整静态 HTML”成为程序闸门，而不是靠 Agent 记忆。
+用于新建项目、修改页面、更新内容和 VPS 部署。目标是让“每个网址都是完整静态 HTML”成为程序闸门，而不是靠 Agent 记忆。
 
 ## 1. 唯一流水线
 
@@ -33,7 +33,7 @@ typecheck
     "validate:static": "node scripts/validate-static-output.mjs dist routes.json",
     "validate:integrations": "node scripts/validate-tidio-output.mjs dist routes.json tidio.json",
     "quality": "npm run typecheck && npm run lint && npm run test --if-present && npm run build && npm run validate:static && npm run validate:integrations",
-    "deploy": "npm run quality && wrangler pages deploy dist"
+    "deploy": "npm run quality && npm run build && ./scripts/deploy.sh"
   }
 }
 ```
@@ -60,18 +60,18 @@ typecheck
 - sitemap 不含 noindex 页、未生成页、相对 URL、query/hash 或重复 URL。
 - `robots.txt`、`sitemap.xml` 和 `404.html` 存在。
 
-## 4. Cloudflare Pages 拦截
+## 4. 部署拦截
 
-使用 Git 集成时：
+使用 Git 集成或 CI 时：
 
 ```text
-Build command: npm run quality
-Build output directory: dist
+Build/test pipeline: npm run quality
+Deploy artifact: dist + API 服务构建产物
 ```
 
-Cloudflare Pages 以 Build command 的退出码判定构建成功或失败。所以 `quality` 必须保留原始错误码，禁止 `|| true`、错误吞掉和无条件退出 0。
+CI 以 `quality` 的退出码判定构建成功或失败。所以 `quality` 必须保留原始错误码，禁止 `|| true`、错误吞掉和无条件退出 0。
 
-使用 Wrangler 直接上传时，只允许通过项目 `deploy` 脚本或先显式完成 `quality`。不把裸 `wrangler pages deploy dist` 当作常规交付命令。
+VPS 没有平台代跑构建：部署脚本只允许通过项目 `deploy` 脚本或先显式完成 `quality`。`scripts/deploy.sh` 负责 rsync 静态产物、同步 API 服务代码、重启 systemd 服务并做部署后 smoke；不提供裸 `rsync` 命令作为常规交付入口，也不在闸门失败后继续上传。
 
 ## 5. 本地与上线后复核
 

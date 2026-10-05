@@ -31,7 +31,7 @@ dist/
 </body>
 ```
 
-如果正文只在 JavaScript 执行后出现，即使部署在 Pages，也只是静态托管的客户端 SPA，不是本 Skill 定义的 SEO 静态页面。
+如果正文只在 JavaScript 执行后出现，即使部署在 VPS 上，也只是静态托管的客户端 SPA，不是本 Skill 定义的 SEO 静态页面。
 
 ## 2. 默认实现
 
@@ -43,7 +43,7 @@ dist/
 - React：只作为类型安全、可复用的构建期页面组件层。
 - React 服务端渲染能力：由构建脚本遍历 route manifest，将页面和完整文档模板渲染为 HTML 字符串。
 - 文件生成器：把 `/a/b/` 写到 `dist/a/b/index.html`，同时确定性生成 metadata、canonical、hreflang、sitemap、robots 与 404。
-- Cloudflare Pages：直接托管 `dist/`；Pages Functions 仅处理 `/api/*`。
+- Nginx + Node.js API 服务：VPS 上 Nginx 直接托管 `dist/` 静态产物；Node.js 服务仅处理 `/api/*`。
 
 默认不引入 Next.js、SSR 服务器或全站客户端路由。不能因为项目使用 React，就退化成只有一个空壳 `index.html` 的 Vite SPA。
 
@@ -104,21 +104,33 @@ content/
 - 独立域名、子域名和子目录均可，但 route manifest 必须记录市场、语言、canonical host 和对应页面集合。
 - 同一产品图片可复用；页面正文、metadata 与买家任务不能只靠图片区分。
 
-## 7. Pages 路由边界
+## 7. Web 服务器路由边界
 
-Pages Function 默认只服务 API。构建产物中显式生成 `_routes.json`，把静态文件排除在 Function 调用之外；具体语法以当前 Cloudflare 官方文档为准。
+Nginx 默认只把 `/api/*` 反向代理到 Node.js API 服务；静态文件由 Nginx 直接返回，不经过 API 进程。在站点配置中显式声明这一边界，具体语法以部署时实际的 Nginx 版本文档为准。
 
 典型目标：
 
-```json
-{
-  "version": 1,
-  "include": ["/api/*"],
-  "exclude": []
+```nginx
+server {
+    listen 443 ssl;
+    server_name example.com;
+
+    root /var/www/example.com/current;
+    index index.html;
+
+    # 未知路径返回真正 404，不回退成首页
+    error_page 404 /404.html;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        limit_req zone=api burst=10 nodelay;
+    }
 }
 ```
 
-不要让全站静态请求无理由进入 Function，也不要用 Function 为每个产品页动态拼 HTML，从而破坏极速静态方案。
+不要让全站静态请求无理由经过 API 服务，也不要用 API 服务为每个产品页动态拼 HTML，从而破坏极速静态方案。
 
 ## 8. 确定性检查
 
@@ -139,7 +151,7 @@ node /path/to/b2b-fast-builder/scripts/validate-static-output.mjs \
 - sitemap 使用绝对 URL，只包含可索引页的 canonical。
 - `noindex` 页不进 sitemap，sitemap 也不得引用没有静态 HTML 的网址。
 
-验证脚本必须成为项目 `quality` 命令和 Cloudflare Pages Build command 的一部分，不能只在交接时手动运行。详见 [自动化质量闸门](automated-quality-gate.md)。
+验证脚本必须成为项目 `quality` 命令和部署流程的一部分，不能只在交接时手动运行。详见 [自动化质量闸门](automated-quality-gate.md)。
 
 然后抽查源响应：
 

@@ -69,7 +69,7 @@ contentHandoff:
   productionRequiresVerifiedContent: true
 
 media:
-  mode: "local" # local | r2
+  mode: "local" # local | shared
   manifestFile: null # 填项目实际内容模型/素材清单路径，不重复维护
   logicalAssetIds: true
   verifiedBusinessImagesRequired: true # 正式产品与企业证据；前期允许标记的设计示意
@@ -82,25 +82,23 @@ media:
     noindexRequired: true
     replaceProductIllustrationsBeforeProduction: true
   localDirectory: "./public/assets"
-  r2:
-    bucket: null
-    publicDomain: null
+  shared:
+    mediaDirectory: null # 如 /srv/media/<brand>
+    publicDomain: null # 如 assets.example.com
     customerOwned: true
 
 domain:
   registrar: "待确认"
   registrantControlledByCustomer: true
-  authoritativeDns: "cloudflare" # cloudflare | external
-  cloudflareAccountOwnedByCustomer: true
+  dnsProvider: "registrar" # registrar | external-dns；VPS 方案不要求迁移 Nameserver
   existingDnsExported: false
   existingMailRecordsVerified: false
-  nameserversDelegated: false
-  dnssecReenabled: false
+  dnsRecordUpdated: false
 
 inquiries:
   endpoint: "/api/inquiry"
   successRedirect: "/thank-you/"
-  database: "d1"
+  database: "sqlite" # sqlite | mysql
   notification: "resend"
   turnstile: true
   saveBeforeNotify: true
@@ -136,15 +134,18 @@ emailDelivery:
   apiKeyPermission: "sending_access"
   apiKeyRestrictedToDomain: true
   secretName: "RESEND_API_KEY"
+  secretDestination: "vps-env-file" # vps-env-file | equivalent-secure-store
   fromAddress: "待确认"
   replyToUsesValidatedVisitorEmail: true
 
 deployment:
-  provider: "cloudflare-pages"
-  projectName: "待确认"
+  provider: "hostinger-vps"
+  serverUser: "待确认" # 专用部署用户，不用 root
   productionDomain: "待确认"
   buildCommand: "npm run quality"
   outputDirectory: "./dist"
+  apiService: "systemd" # systemd 服务名在项目配置中记录
+  webServer: "nginx"
   blockOnQualityFailure: true
   authorized: false
 

@@ -1,6 +1,6 @@
 # 结构示例，不是客户资产；生成项目时合并到既有内容模型，勿重复维护。
 schemaVersion: 2
-mode: "local" # local | r2；真实选择以项目契约为准
+mode: "local" # local | shared；真实选择以项目契约为准
 assets:
   - id: "example-product-main"
     entityId: "example-product"
